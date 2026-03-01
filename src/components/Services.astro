@@ -450,18 +450,37 @@
             width: calc(100% - 6vw);
             margin: -30px 3vw 0;
             padding: 28px 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .service-row:nth-child(odd) .service-content,
         .service-row:nth-child(even) .service-content {
             padding-left: 22px;
             padding-right: 22px;
         }
+        .service-desc {
+            margin-inline: auto;
+        }
         .features-list {
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 14px;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            gap: 12px;
+        }
+        .feature-item {
+            width: auto;
+            justify-content: center;
+        }
+        .pricing-box {
+            width: 100%;
         }
         .pricing-details li {
             font-size: 0.82rem;
+        }
+        .service-content .btn {
+            align-self: center !important;
         }
     }
 

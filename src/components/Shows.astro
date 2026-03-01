@@ -405,7 +405,24 @@ const shows = [
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-        .shows-header { grid-template-columns: 1fr; gap: 24px; }
+        .shows-header { 
+            grid-template-columns: 1fr; 
+            gap: 24px; 
+            text-align: center;
+        }
+        .shows-eyebrow {
+            margin-inline: auto;
+        }
+        .shows-header-right {
+            align-items: center;
+        }
+        .shows-subtitle {
+            margin-inline: auto;
+        }
+        .btn-outline-shows {
+            align-self: center;
+        }
+
         .show-row {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto auto;
@@ -416,9 +433,13 @@ const shows = [
         .show-info-col { grid-column: 1; }
     }
     @media (max-width: 580px) {
-        .show-row { grid-template-columns: 1fr; }
+        .show-row { grid-template-columns: 1fr; text-align: center; }
+        .show-info-col { align-items: center; }
+        .show-date-day { margin: 0 auto; }
         .show-img-col { grid-column: 1; grid-row: auto; align-items: stretch; }
         .show-img-frame { aspect-ratio: 16/8; }
+        .show-tags { justify-content: center; }
+        .show-cta-link { justify-content: center; }
     }
 
     /* ANIMATION */

@@ -185,6 +185,30 @@
 
     /* ── Responsive ── */
     @media (max-width: 1024px) {
+        .visit-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+        .visit-desc {
+            margin-inline: auto;
+        }
+        .visit-items {
+            align-self: stretch;
+        }
+        .visit-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 12px;
+        }
+        .visit-item:hover {
+            padding-left: 0;
+        }
+        .visit-info .self-start {
+            align-self: center !important;
+        }
         .visit-map {
             height: clamp(320px, 60vw, 480px);
         }
