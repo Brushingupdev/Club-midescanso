@@ -1,0 +1,307 @@
+---
+
+---
+
+<!-- MODAL DE RESERVA -->
+<div
+    class="fixed inset-0 w-full h-full z-[2000] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] reserve-modal"
+    id="reserveModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reserve-modal-title"
+>
+    <div
+        class="absolute inset-0 bg-[#132418e6] backdrop-blur-[10px]"
+        id="reserveOverlay"
+    >
+    </div>
+
+    <div
+        class="reserve-modal-content bg-cream w-[95%] max-w-[900px] h-[90vh] md:h-auto max-h-[90vh] rounded-[20px] relative z-[1] overflow-y-auto overflow-x-hidden p-0 flex flex-col md:flex-row translate-y-[40px] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    >
+        <!-- Botón de Cerrar -->
+        <button
+            class="absolute top-[20px] right-[20px] z-[10] bg-white/80 backdrop-blur-sm border-none w-[44px] h-[44px] rounded-full flex items-center justify-center text-forest cursor-pointer transition-all duration-300 hover:bg-copper hover:text-white hover:rotate-90 shadow-md"
+            id="reserveCloseBtn"
+            aria-label="Cerrar modal de reservas"
+        >
+            <i aria-hidden="true" data-lucide="x"></i>
+        </button>
+
+        <!-- Imagen Decorativa -->
+        <div class="hidden md:block md:w-[40%] relative">
+            <img
+                src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80"
+                alt="Vista al atardecer del resort"
+                class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-forest-dark/90 via-forest-dark/20 to-transparent flex items-end p-8"
+            >
+                <div class="text-white">
+                    <h3 class="font-heading text-2xl mb-2 text-sand">
+                        Tu Escape Perfecto
+                    </h3>
+                    <p class="text-sm text-white/80 font-body leading-relaxed">
+                        Asegura tu lugar en nuestro resort. Ya sea un relajante
+                        bungalow o una mesa en primera fila, te esperamos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div
+            class="w-full md:w-[60%] p-[30px] md:p-[50px] flex flex-col justify-center"
+        >
+            <div class="mb-[30px]">
+                <div
+                    class="subtitle-section text-copper before:bg-copper mb-2 text-[0.75rem]"
+                >
+                    Empezar Reserva
+                </div>
+                <h2
+                    id="reserve-modal-title"
+                    class="font-heading text-[length:clamp(1.8rem,5vw,2.2rem)] text-forest-dark mb-0 leading-[1.2]"
+                >
+                    Reserva tu Experiencia
+                </h2>
+                <p class="text-[0.9rem] text-[#666] mt-3">
+                    Completa el formulario y te contactaremos por WhatsApp para
+                    confirmar.
+                </p>
+            </div>
+
+            <form class="flex flex-col gap-[20px] reserva-form">
+                <!-- Servicio -->
+                <div>
+                    <label
+                        for="servicio"
+                        class="block font-body text-[0.8rem] uppercase tracking-wider text-forest-dark mb-[8px] font-medium"
+                    >
+                        Servicio Principal
+                    </label>
+                    <div class="relative">
+                        <select
+                            id="servicio"
+                            class="w-full bg-sand/30 border border-copper/20 rounded-[8px] px-[15px] py-[14px] text-forest-dark outline-none transition-border focus:border-copper appearance-none cursor-pointer"
+                        >
+                            <option value="">Selecciona una opción</option>
+                            <option value="restaurante"
+                                >Mesa en Restaurante</option
+                            >
+                            <option value="bungalow"
+                                >Bungalow (Hospedaje)</option
+                            >
+                            <option value="piscina"
+                                >Entrada Club de Piscinas</option
+                            >
+                            <option value="evento"
+                                >Eventos Privados / Corporativos</option
+                            >
+                        </select>
+                        <i
+                            aria-hidden="true"
+                            data-lucide="chevron-down"
+                            class="absolute right-[15px] top-1/2 -translate-y-1/2 text-copper pointer-events-none w-5 h-5"
+                        ></i>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-[20px]">
+                    <div>
+                        <label
+                            for="fecha"
+                            class="block font-body text-[0.8rem] uppercase tracking-wider text-forest-dark mb-[8px] font-medium"
+                        >
+                            Fecha de llegada
+                        </label>
+                        <input
+                            type="date"
+                            id="fecha"
+                            class="w-full bg-sand/30 border border-copper/20 rounded-[8px] px-[15px] py-[12px] text-forest-dark outline-none transition-border focus:border-copper"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            for="personas"
+                            class="block font-body text-[0.8rem] uppercase tracking-wider text-forest-dark mb-[8px] font-medium"
+                        >
+                            N° Personas
+                        </label>
+                        <select
+                            id="personas"
+                            class="w-full bg-sand/30 border border-copper/20 rounded-[8px] px-[15px] py-[14px] text-forest-dark outline-none transition-border focus:border-copper appearance-none cursor-pointer"
+                        >
+                            <option value="1-2">1 - 2 personas</option>
+                            <option value="3-4">3 - 4 personas</option>
+                            <option value="5-8">5 - 8 personas</option>
+                            <option value="9+">Más de 8 personas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 gap-[20px] border-t border-forest-dark/10 pt-[20px] mt-[10px]"
+                >
+                    <div>
+                        <label
+                            for="nombre"
+                            class="block font-body text-[0.8rem] uppercase tracking-wider text-forest-dark mb-[8px] font-medium"
+                            >Nombre Completo</label
+                        >
+                        <input
+                            type="text"
+                            id="nombre"
+                            placeholder="Ej. Juan Pérez"
+                            class="w-full bg-sand/30 border border-copper/20 rounded-[8px] px-[15px] py-[12px] text-forest-dark outline-none transition-border focus:border-copper placeholder:text-forest-dark/30"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            for="celular"
+                            class="block font-body text-[0.8rem] uppercase tracking-wider text-forest-dark mb-[8px] font-medium"
+                            >Teléfono / Celular</label
+                        >
+                        <input
+                            type="tel"
+                            id="celular"
+                            placeholder="+51 999 000 000"
+                            class="w-full bg-sand/30 border border-copper/20 rounded-[8px] px-[15px] py-[12px] text-forest-dark outline-none transition-border focus:border-copper placeholder:text-forest-dark/30"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label
+                        for="comentarios"
+                        class="block font-body text-[0.8rem] uppercase tracking-wider text-forest-dark mb-[8px] font-medium"
+                        >Petición Especial (Opcional)</label
+                    >
+                    <textarea
+                        id="comentarios"
+                        rows="2"
+                        placeholder="Ej: Cumpleaños, alergias, cuna para bebé..."
+                        class="w-full bg-sand/30 border border-copper/20 rounded-[8px] px-[15px] py-[12px] text-forest-dark outline-none transition-border focus:border-copper placeholder:text-forest-dark/30 resize-none"
+                    ></textarea>
+                </div>
+
+                <div class="mt-[10px]">
+                    <button
+                        type="button"
+                        class="btn btn-primary w-full py-[15px] text-[0.85rem] flex items-center justify-center gap-[10px]"
+                        id="reserveSubmitBtn"
+                    >
+                        <i
+                            data-lucide="message-circle"
+                            style="width:18px;height:18px"></i>
+                        Enviar por WhatsApp
+                    </button>
+                    <p
+                        class="text-center text-[0.75rem] text-[#888] mt-3 tracking-wide"
+                    >
+                        Te responderemos rápidamente para confirmar tu
+                        solicitud.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    @reference "../styles/global.css";
+
+    .reserve-modal-content {
+        box-shadow: var(--shadow-modal);
+    }
+    :global(.reserve-modal.active) {
+        @apply opacity-100 pointer-events-auto;
+    }
+    :global(.reserve-modal.active .reserve-modal-content) {
+        @apply translate-y-0;
+    }
+
+    .reserva-form input:focus,
+    .reserva-form select:focus,
+    .reserva-form textarea:focus {
+        background-color: transparent;
+        box-shadow: 0 0 0 3px rgba(208, 123, 67, 0.1);
+    }
+</style>
+
+<script>
+    const reserveModal = document.getElementById("reserveModal");
+    const reserveCloseBtn = document.getElementById("reserveCloseBtn");
+    const reserveOverlay = document.getElementById("reserveOverlay");
+    const reserveSubmitBtn = document.getElementById("reserveSubmitBtn");
+
+    function toggleReserveModal(show: boolean) {
+        if (show) {
+            reserveModal?.classList.add("active");
+            document.body.style.overflow = "hidden";
+        } else {
+            reserveModal?.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+    }
+
+    reserveCloseBtn?.addEventListener("click", () => toggleReserveModal(false));
+    reserveOverlay?.addEventListener("click", () => toggleReserveModal(false));
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") toggleReserveModal(false);
+    });
+
+    // Solo abrir modal desde botones con data-modal="reserva"
+    document.querySelectorAll("[data-modal='reserva']").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleReserveModal(true);
+        });
+    });
+
+    (window as any).openReserveModal = () => toggleReserveModal(true);
+
+    // Botón ENVIAR → arma mensaje de WhatsApp con los datos del formulario
+    reserveSubmitBtn?.addEventListener("click", () => {
+        const servicio = (
+            document.getElementById("servicio") as HTMLSelectElement
+        )?.value;
+        const fecha = (document.getElementById("fecha") as HTMLInputElement)
+            ?.value;
+        const personas = (
+            document.getElementById("personas") as HTMLSelectElement
+        )?.value;
+        const nombre = (
+            document.getElementById("nombre") as HTMLInputElement
+        )?.value.trim();
+        const celular = (
+            document.getElementById("celular") as HTMLInputElement
+        )?.value.trim();
+        const comentarios = (
+            document.getElementById("comentarios") as HTMLTextAreaElement
+        )?.value.trim();
+
+        const labels: Record<string, string> = {
+            restaurante: "Mesa en Restaurante",
+            bungalow: "Bungalow (Hospedaje)",
+            piscina: "Entrada Club de Piscinas",
+            evento: "Evento Privado / Corporativo",
+        };
+
+        let msg = "Hola, quiero hacer una reserva en Mi Descanso 🌿\n\n";
+        if (servicio) msg += `📌 Servicio: ${labels[servicio] ?? servicio}\n`;
+        if (fecha) msg += `📅 Fecha: ${fecha}\n`;
+        if (personas) msg += `👥 Personas: ${personas}\n`;
+        if (nombre) msg += `👤 Nombre: ${nombre}\n`;
+        if (celular) msg += `📞 Teléfono: ${celular}\n`;
+        if (comentarios) msg += `💬 Petición especial: ${comentarios}\n`;
+        msg += "\n¿Pueden confirmar disponibilidad? ¡Gracias!";
+
+        window.open(
+            `https://wa.me/51999888777?text=${encodeURIComponent(msg)}`,
+            "_blank",
+            "noopener",
+        );
+    });
+</script>

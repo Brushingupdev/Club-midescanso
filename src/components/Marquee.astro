@@ -1,0 +1,44 @@
+---
+
+---
+
+<div
+    class="bg-cream text-forest py-[30px] border-y border-forest-dark/10 overflow-hidden whitespace-nowrap flex text-[0.85rem] tracking-[0.25em] uppercase font-medium"
+>
+    <div
+        class="flex gap-[80px] animate-[marquee_40s_linear_infinite] pl-[80px]"
+    >
+        {
+            Array.from({ length: 2 }).map((_, i) => (
+                <>
+                    <span class="flex items-center gap-[80px] after:content-[''] after:w-[6px] after:h-[6px] after:rounded-full after:bg-copper">
+                        Restaurante Campestre
+                    </span>
+                    <span class="flex items-center gap-[80px] after:content-[''] after:w-[6px] after:h-[6px] after:rounded-full after:bg-copper">
+                        Piscinas y Toboganes
+                    </span>
+                    <span class="flex items-center gap-[80px] after:content-[''] after:w-[6px] after:h-[6px] after:rounded-full after:bg-copper">
+                        Shows en Vivo cada Sábado
+                    </span>
+                    <span class="flex items-center gap-[80px] after:content-[''] after:w-[6px] after:h-[6px] after:rounded-full after:bg-copper">
+                        Bungalows Exclusivos
+                    </span>
+                    <span class="flex items-center gap-[80px] after:content-[''] after:w-[6px] after:h-[6px] after:rounded-full after:bg-copper">
+                        Eventos Privados
+                    </span>
+                </>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>

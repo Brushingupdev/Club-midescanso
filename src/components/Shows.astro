@@ -1,0 +1,734 @@
+---
+const shows = [
+    {
+        num: "01",
+        day: "SÁB 15",
+        month: "MAR",
+        time: "2:00 – 6:00 PM",
+        title: "Orquesta Sabor Campestre",
+        desc: "Sube el volumen, baja la guardia. Salsa y cumbia en vivo con una orquesta que hace bailar hasta a los que \"no saben bailar\".",
+        tags: ["Orquesta", "Baile"],
+        img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=900&q=80",
+    },
+    {
+        num: "02",
+        day: "DOM 16",
+        month: "MAR",
+        time: "1:00 – 5:00 PM",
+        title: "Gran Peña Criolla",
+        desc: "Marinera, festejo y música criolla de verdad. Con artistas que llevan el Perú en el pecho.",
+        tags: ["Peña", "Danzas"],
+        img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=900&q=80",
+    },
+    {
+        num: "03",
+        day: "SÁB 22",
+        month: "MAR",
+        time: "3:00 – 7:00 PM",
+        title: "Noche de Cumbia & Salsa",
+        desc: "La cumbia peruana de la buena: de esa que conoces desde chico y que nunca pasa de moda.",
+        tags: ["Cumbia", "Familia"],
+        img: "/img/eventos-noche.png",
+    },
+];
+---
+
+<section class="shows-wrap" id="shows">
+    <div class="shows-inner">
+
+        <!-- HEADER dividido: título izq, texto der -->
+        <div class="shows-header" data-animate>
+            <div class="shows-header-left">
+                <span class="shows-eyebrow">Todos los fines de semana</span>
+                <h2 class="shows-title">
+                    Cartelera<br/><em>de Shows</em>
+                </h2>
+            </div>
+            <div class="shows-header-right">
+                <p class="shows-subtitle">
+                    Ven con quien quieras, quédate todo el día. Hay música en vivo, pista de baile y energía de sobra cada sábado y domingo.
+                </p>
+                <button id="btnCalendar" class="btn-outline-shows">Ver calendario completo</button>
+            </div>
+        </div>
+
+        <!-- DIVISOR -->
+        <div class="shows-divider" data-animate></div>
+
+<!-- ======= MODAL CALENDARIO ======= -->
+<div id="calendarModal" class="cal-modal" role="dialog" aria-modal="true" aria-label="Calendario de Shows">
+    <div class="cal-backdrop" id="calBackdrop"></div>
+    <div class="cal-panel">
+
+        <!-- Header modal -->
+        <div class="cal-head">
+            <div>
+                <p class="cal-head-eyebrow">Cartelera Mensual</p>
+                <h3 class="cal-head-title">Marzo 2025</h3>
+            </div>
+            <button id="calClose" class="cal-close" aria-label="Cerrar">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <div class="cal-body">
+            <!-- Calendario -->
+            <div class="cal-grid-wrap">
+                <!-- Días de semana -->
+                <div class="cal-weekdays">
+                    {["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"].map(d => (
+                        <span class="cal-wd">{d}</span>
+                    ))}
+                </div>
+                <!-- Días del mes (marzo 2025 empieza sábado = col 6) -->
+                <div class="cal-days">
+                    {/* Espacios vacíos - Marzo 2025 empieza en sábado */}
+                    {Array.from({length: 5}).map(_ => <div class="cal-day cal-day--empty"></div>)}
+                    {Array.from({length: 31}, (_, i) => i + 1).map(d => {
+                        const isShow = [15, 16, 22, 23, 29, 30].includes(d);
+                        const isSab = [1,8,15,22,29].includes(d);
+                        const isDom = [2,9,16,23,30].includes(d);
+                        return (
+                            <div class={`cal-day ${isShow ? 'cal-day--show' : ''} ${isSab || isDom ? 'cal-day--weekend' : ''}`}>
+                                <span class="cal-day-num">{d}</span>
+                                {isShow && <span class="cal-dot"></span>}
+                            </div>
+                        );
+                    })}
+                </div>
+                <div class="cal-legend">
+                    <span class="cal-legend-dot"></span>
+                    <span>Show programado</span>
+                </div>
+            </div>
+
+            <!-- Lista de todos los shows del mes -->
+            <div class="cal-events">
+                <h4 class="cal-events-title">Todos los shows de Marzo</h4>
+                <div class="cal-event-list">
+                    {[
+                        { d:"Sáb 15", t:"2:00–6:00 PM", title:"Orquesta Sabor Campestre", tags:["Orquesta","Baile"] },
+                        { d:"Dom 16", t:"1:00–5:00 PM", title:"Gran Peña Criolla", tags:["Peña","Danzas"] },
+                        { d:"Sáb 22", t:"3:00–7:00 PM", title:"Noche de Cumbia & Salsa", tags:["Cumbia","Familia"] },
+                        { d:"Dom 23", t:"12:00–4:00 PM", title:"Show Infantil + Animación", tags:["Familia","Niños"] },
+                        { d:"Sáb 29", t:"2:00–7:00 PM", title:"Festival Criollo", tags:["Criolla","Festivo"] },
+                        { d:"Dom 30", t:"12:00–5:00 PM", title:"Domingo Familiar Especial", tags:["Familia","Baile"] },
+                    ].map(ev => (
+                        <div class="cal-event-item">
+                            <div class="cal-event-date">{ev.d}<br/><span>{ev.t}</span></div>
+                            <div class="cal-event-info">
+                                <p class="cal-event-name">{ev.title}</p>
+                                <ul class="cal-event-tags">
+                                    {ev.tags.map(tag => <li>{tag}</li>)}
+                                </ul>
+                            </div>
+                            <a href="#contacto" class="cal-event-btn" id="calContactLink">Reservar</a>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- LISTA DE SHOWS tipo agenda/programa -->
+        <div class="shows-list">
+            {shows.map((show, i) => (
+                <div class="show-row" data-animate style={`--delay:${i * 100}ms`}>
+                    <!-- Número grande decorativo -->
+                    <div class="show-num-col">
+                        <span class="show-num">{show.num}</span>
+                    </div>
+
+                    <!-- Fecha -->
+                    <div class="show-date-col">
+                        <span class="show-date-day">{show.day}</span>
+                        <span class="show-date-month">{show.month}</span>
+                        <span class="show-date-time">{show.time}</span>
+                    </div>
+
+                    <!-- Texto -->
+                    <div class="show-info-col">
+                        <h3 class="show-title">{show.title}</h3>
+                        <p class="show-desc">{show.desc}</p>
+                        <ul class="show-tags">
+                            {show.tags.map(tag => <li class="show-tag">{tag}</li>)}
+                        </ul>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="show-img-col">
+                        <div class="show-img-frame">
+                            <img src={show.img} alt={show.title} loading="lazy" />
+                        </div>
+                        <a href="#contacto" class="show-cta-link">
+                            Reservar
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+                        </a>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+    </div>
+</section>
+
+<style>
+    @reference "../styles/global.css";
+
+    .shows-wrap {
+        padding: clamp(60px, 8vw, 120px) 0;
+        background: radial-gradient(ellipse at top right, var(--color-cream) 0%, #F2EBE1 100%);
+    }
+
+    .shows-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 5vw;
+    }
+
+    /* ═══ HEADER ═══ */
+    .shows-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    .shows-eyebrow {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: var(--color-copper);
+        margin-bottom: 16px;
+    }
+    .shows-title {
+        font-family: var(--font-heading);
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        color: var(--color-forest-dark);
+        line-height: 1.0;
+        margin: 0;
+    }
+    .shows-title em {
+        font-style: italic;
+        color: var(--color-copper);
+    }
+    .shows-header-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 24px;
+        padding-bottom: 6px;
+    }
+    .shows-subtitle {
+        font-size: 1.05rem;
+        color: var(--color-forest-dark);
+        opacity: 0.6;
+        line-height: 1.8;
+        max-width: 420px;
+    }
+    .btn-outline-shows {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        padding: 12px 28px;
+        border: 1px solid rgba(19,36,24,0.2);
+        border-radius: 100px;
+        color: var(--color-forest-dark);
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .btn-outline-shows:hover {
+        background: var(--color-forest-dark);
+        color: white;
+    }
+
+    /* ═══ DIVISOR ═══ */
+    .shows-divider {
+        height: 1px;
+        background: rgba(19,36,24,0.12);
+        margin-bottom: 0;
+        opacity: 0;
+    }
+
+    /* ═══ LISTA ═══ */
+    .shows-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ═══ FILA DE SHOW ═══ */
+    .show-row {
+        display: grid;
+        grid-template-columns: 64px 140px 1fr 280px;
+        gap: 24px 32px;
+        align-items: center;
+        padding: 32px 0;
+        border-bottom: 1px solid rgba(19,36,24,0.08);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: background 0.3s ease;
+        cursor: default;
+    }
+    .show-row:hover {
+        background: rgba(208,123,67,0.03);
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: -10px;
+        margin-right: -10px;
+        border-radius: 12px;
+    }
+
+    /* Número decorativo */
+    .show-num-col { text-align: right; }
+    .show-num {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        color: var(--color-forest-dark);
+        opacity: 0.07;
+        line-height: 1;
+        font-style: italic;
+    }
+
+    /* Fecha */
+    .show-date-col {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        border-left: 2px solid var(--color-copper);
+        padding-left: 16px;
+    }
+    .show-date-day {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--color-forest-dark);
+        line-height: 1;
+    }
+    .show-date-month {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--color-copper);
+    }
+    .show-date-time {
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        color: var(--color-forest-dark);
+        opacity: 0.45;
+        margin-top: 4px;
+    }
+
+    /* Info */
+    .show-info-col {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .show-title {
+        font-family: var(--font-heading);
+        font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+        color: var(--color-forest-dark);
+        line-height: 1.2;
+        margin: 0;
+    }
+    .show-desc {
+        font-size: 0.95rem;
+        color: var(--color-forest-dark);
+        opacity: 0.55;
+        line-height: 1.75;
+        margin: 0;
+        max-width: 400px;
+    }
+    .show-tags {
+        display: flex;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .show-tag {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        padding: 4px 14px;
+        border: 1px solid rgba(19,36,24,0.15);
+        border-radius: 20px;
+        color: var(--color-forest-dark);
+        opacity: 0.6;
+    }
+
+    /* Imagen + botón */
+    .show-img-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-end;
+    }
+    .show-img-frame {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .show-img-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .show-row:hover .show-img-frame img { transform: scale(1.05); }
+
+    .show-cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.13em;
+        color: var(--color-copper);
+        text-decoration: none;
+        font-weight: 600;
+        transition: gap 0.3s ease;
+    }
+    .show-cta-link:hover { gap: 12px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .shows-header { grid-template-columns: 1fr; gap: 24px; }
+        .show-row {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+        }
+        .show-num-col { display: none; }
+        .show-date-col { grid-column: 1; }
+        .show-img-col  { grid-column: 2; grid-row: 1 / 3; }
+        .show-info-col { grid-column: 1; }
+    }
+    @media (max-width: 580px) {
+        .show-row { grid-template-columns: 1fr; }
+        .show-img-col { grid-column: 1; grid-row: auto; align-items: stretch; }
+        .show-img-frame { aspect-ratio: 16/8; }
+    }
+
+    /* ANIMATION */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══ MODAL STYLES ═══ */
+    .cal-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 4000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+    }
+    .cal-modal.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .cal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(10,20,14,0.6);
+        backdrop-filter: blur(6px);
+    }
+    .cal-panel {
+        position: relative;
+        z-index: 1;
+        background: #FAF6F0;
+        border-radius: 20px;
+        width: min(96vw, 880px);
+        max-height: 88vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+        transform: scale(0.96) translateY(20px);
+        transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cal-modal.open .cal-panel {
+        transform: scale(1) translateY(0);
+    }
+
+    /* Header */
+    .cal-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 32px 20px;
+        border-bottom: 1px solid rgba(19,36,24,0.08);
+        flex-shrink: 0;
+    }
+    .cal-head-eyebrow {
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--color-copper);
+        margin: 0 0 6px;
+    }
+    .cal-head-title {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        color: var(--color-forest-dark);
+        margin: 0;
+    }
+    .cal-close {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(19,36,24,0.12);
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--color-forest-dark);
+        transition: all 0.25s ease;
+    }
+    .cal-close:hover {
+        background: var(--color-forest-dark);
+        color: white;
+        transform: rotate(90deg);
+    }
+
+    /* Body: calendario + lista */
+    .cal-body {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        overflow: hidden;
+        flex: 1;
+    }
+
+    /* Grid calendario */
+    .cal-grid-wrap {
+        padding: 24px;
+        border-right: 1px solid rgba(19,36,24,0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .cal-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+    }
+    .cal-wd {
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-forest-dark);
+        opacity: 0.4;
+        text-align: center;
+        padding: 4px 0;
+    }
+    .cal-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+    }
+    .cal-day {
+        aspect-ratio: 1;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        position: relative;
+        cursor: default;
+        transition: background 0.2s ease;
+    }
+    .cal-day--empty { opacity: 0; pointer-events: none; }
+    .cal-day--weekend .cal-day-num { color: var(--color-copper); opacity: 0.7; }
+    .cal-day--show {
+        background: rgba(208,123,67,0.1);
+        border: 1px solid rgba(208,123,67,0.2);
+    }
+    .cal-day--show .cal-day-num { color: var(--color-copper); font-weight: 600; }
+    .cal-day-num {
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        color: var(--color-forest-dark);
+        opacity: 0.6;
+        line-height: 1;
+    }
+    .cal-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--color-copper);
+    }
+    .cal-legend {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 4px;
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        color: var(--color-forest-dark);
+        opacity: 0.5;
+    }
+    .cal-legend-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-copper);
+        opacity: 0.7;
+    }
+
+    /* Lista de eventos */
+    .cal-events {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .cal-events-title {
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--color-forest-dark);
+        opacity: 0.4;
+        padding: 20px 24px 12px;
+        margin: 0;
+        border-bottom: 1px solid rgba(19,36,24,0.06);
+        flex-shrink: 0;
+    }
+    .cal-event-list {
+        overflow-y: auto;
+        flex: 1;
+        padding: 8px 0;
+    }
+    .cal-event-item {
+        display: grid;
+        grid-template-columns: 80px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 14px 24px;
+        border-bottom: 1px solid rgba(19,36,24,0.05);
+        transition: background 0.2s ease;
+    }
+    .cal-event-item:hover { background: rgba(208,123,67,0.04); }
+    .cal-event-date {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        color: var(--color-forest-dark);
+        line-height: 1.3;
+    }
+    .cal-event-date span {
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        color: var(--color-copper);
+        display: block;
+        margin-top: 2px;
+    }
+    .cal-event-name {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        color: var(--color-forest-dark);
+        margin: 0 0 5px;
+        line-height: 1.3;
+    }
+    .cal-event-tags {
+        display: flex;
+        gap: 6px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .cal-event-tags li {
+        font-family: var(--font-body);
+        font-size: 0.58rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 2px 8px;
+        border: 1px solid rgba(19,36,24,0.12);
+        border-radius: 20px;
+        color: var(--color-forest-dark);
+        opacity: 0.55;
+    }
+    .cal-event-btn {
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-copper);
+        text-decoration: none;
+        font-weight: 600;
+        white-space: nowrap;
+        padding: 6px 14px;
+        border: 1px solid rgba(208,123,67,0.3);
+        border-radius: 20px;
+        transition: all 0.25s ease;
+    }
+    .cal-event-btn:hover {
+        background: var(--color-copper);
+        color: white;
+        border-color: var(--color-copper);
+    }
+
+    @media (max-width: 640px) {
+        .cal-body { grid-template-columns: 1fr; }
+        .cal-grid-wrap { border-right: none; border-bottom: 1px solid rgba(19,36,24,0.08); }
+        .cal-panel { max-height: 95vh; }
+        .cal-head { padding: 20px; }
+    }
+</style>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            const delay = el.style.getPropertyValue("--delay") || "0ms";
+            el.style.animation = `fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) ${delay} forwards`;
+            observer.unobserve(el);
+        });
+    }, { threshold: 0.07 });
+
+    document.querySelectorAll(".shows-header, .shows-divider, .show-row").forEach(el => observer.observe(el));
+
+    // Modal calendario
+    const modal      = document.getElementById("calendarModal")!;
+    const btnOpen    = document.getElementById("btnCalendar")!;
+    const btnClose   = document.getElementById("calClose")!;
+    const backdrop   = document.getElementById("calBackdrop")!;
+
+    function openCal() {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
+    function closeCal() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+    }
+
+    btnOpen.addEventListener("click", openCal);
+    btnClose.addEventListener("click", closeCal);
+    backdrop.addEventListener("click", closeCal);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeCal(); });
+
+    // Cerrar modal al hacer click en Reservar
+    document.querySelectorAll(".cal-event-btn").forEach(btn => {
+        btn.addEventListener("click", () => closeCal());
+    });
+</script>

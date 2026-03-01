@@ -1,0 +1,190 @@
+---
+
+---
+
+<header
+    class="relative h-screen min-h-[800px] flex items-center justify-center pt-[80px]"
+    id="hero"
+>
+    <div
+        class="absolute inset-[1vw] rounded-[20px] overflow-hidden -z-10 bg-forest isolate"
+    >
+        <!-- Overlay Gradient -->
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-forest-dark/40 via-forest-dark/10 to-forest-dark/90 z-10"
+        >
+        </div>
+        <img
+            src="/img-1.jpg"
+            alt="Vista del parque acuático de Mi Descanso Resort"
+            class="w-full h-full object-cover scale-110 animate-[slowPan_30s_infinite_alternate_ease-in-out]"
+        />
+    </div>
+
+    <div
+        class="text-center max-w-[900px] w-full px-[5vw] relative z-20 mt-auto mb-[8vh] pb-[80px] sm:pb-0"
+    >
+        <!-- Badge sutil -->
+        <div
+            class="inline-flex items-center gap-[10px] mb-6 delay-100 opacity-0 animate-fade-up [--animate-delay:100ms] fill-mode-forwards"
+            data-animate
+        >
+            <span class="w-[30px] h-[1px] bg-gold/70"></span>
+            <span
+                class="font-body text-[0.7rem] tracking-[0.3em] uppercase text-sand/80"
+                >Ate, Lima — Perú</span
+            >
+            <span class="w-[30px] h-[1px] bg-gold/70"></span>
+        </div>
+
+        <!-- Título principal -->
+        <h1
+            class="delay-200 opacity-0 animate-fade-up [--animate-delay:200ms] fill-mode-forwards font-heading leading-[1.05] mb-8"
+            style="font-size: clamp(3.2rem, 10vw, 6rem); text-shadow: 0 4px 30px rgba(0,0,0,0.5);"
+            data-animate
+        >
+            <span class="text-white font-medium">Tu lugar para</span><br />
+            <i class="text-gold italic font-medium">comer, jugar</i>
+            <span class="text-white font-medium"> y descansar</span>
+        </h1>
+
+        <!-- Descripción corta -->
+        <p
+            class="text-white/75 mx-auto mb-10 max-w-[480px] leading-[1.9] delay-300 opacity-0 animate-fade-up [--animate-delay:300ms] fill-mode-forwards"
+            style="font-size: clamp(1rem, 2vw, 1.15rem); text-shadow: 0 2px 10px rgba(0,0,0,0.4);"
+            data-animate
+        >
+            Restaurante criollo, piscinas, toboganes y bungalows.<br />
+            Todo en un solo lugar, para toda la familia.
+        </p>
+
+        <!-- Botones -->
+        <div
+            class="flex flex-col sm:flex-row gap-[15px] sm:gap-[20px] justify-center delay-400 opacity-0 animate-fade-up [--animate-delay:400ms] fill-mode-forwards"
+            data-animate
+        >
+            <a href="#restaurante" class="btn btn-primary w-full sm:w-auto"
+                >Ver Carta</a
+            >
+            <a
+                href="#piscinas"
+                class="btn btn-outline text-white border-white/50 hover:bg-white hover:text-forest-dark w-full sm:w-auto backdrop-blur-sm"
+                >Conocer el Club</a
+            >
+        </div>
+    </div>
+
+    <a
+        href="#restaurante"
+        class="md:hidden absolute bottom-[30px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-[8px] group scroll-indicator-mobile"
+        aria-label="Explorar el contenido"
+    >
+        <span
+            class="text-white/70 font-body text-[0.65rem] tracking-[0.3em] uppercase group-hover:text-gold transition-colors duration-300"
+            >Explorar</span
+        >
+        <span class="w-[1px] h-[30px] bg-white/40 scroll-line"></span>
+    </a>
+</header>
+
+<style>
+    @keyframes slowPan {
+        0% {
+            transform: scale(1.1) translateY(0);
+        }
+        100% {
+            transform: scale(1.15) translateY(-3%);
+        }
+    }
+
+    /* Scroll indicator (solo movil) */
+    .scroll-line {
+        display: block;
+        animation: scrollPulse 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        transform-origin: top;
+    }
+
+    @keyframes scrollPulse {
+        0% {
+            transform: scaleY(0);
+            transform-origin: top;
+            opacity: 0;
+        }
+        50% {
+            transform: scaleY(1);
+            transform-origin: top;
+            opacity: 1;
+        }
+        50.1% {
+            transform: scaleY(1);
+            transform-origin: bottom;
+            opacity: 1;
+        }
+        100% {
+            transform: scaleY(0);
+            transform-origin: bottom;
+            opacity: 0;
+        }
+    }
+
+    /* Animation Utilities */
+    .animate-fade-up {
+        animation-name: fadeUp;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fill-mode-forwards {
+        animation-fill-mode: forwards;
+    }
+</style>
+
+<script>
+    // Intersection Observer for Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Apply animation delay if property exists and run animation
+                const delay = (
+                    entry.target as HTMLElement
+                ).style.getPropertyValue("--animate-delay");
+                if (delay) {
+                    (entry.target as HTMLElement).style.animationDelay = delay;
+                } else {
+                    // Pull from classes if possible or set default
+                    const className = entry.target.className;
+                    const match = className.match(/\[--animate-delay:(.*?)\]/);
+                    if (match) {
+                        (entry.target as HTMLElement).style.animationDelay =
+                            match[1];
+                    }
+                }
+
+                // Play animation
+                entry.target.classList.replace("opacity-0", "opacity-100");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document
+        .querySelectorAll("[data-animate]")
+        .forEach((el) => observer.observe(el));
+</script>

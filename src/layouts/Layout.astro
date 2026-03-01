@@ -1,0 +1,362 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const {
+	title,
+	description = "Descubre Mi Descanso, tu escapada perfecta en Ate. Restaurante campestre, piscinas, shows en vivo y bungalows rodeados de naturaleza.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Icons -->
+		<script is:inline src="https://unpkg.com/lucide@latest"></script>
+	</head>
+	<body>
+		<slot />
+
+		<!-- WhatsApp Flotante -->
+		<div class="wa-widget">
+			<!-- Burbuja de mensaje arriba -->
+			<div class="wa-balloon" id="waBalloon">
+				<button
+					class="wa-balloon-close"
+					id="waBalloonClose"
+					aria-label="Cerrar">✕</button
+				>
+				<p class="wa-balloon-text">
+					<span class="wa-line-1">¿Quieres más información?</span><br
+					/>
+					<strong class="wa-line-2"
+						>Chatea con nosotros <span class="wa-wave">👋</span
+						></strong
+					>
+				</p>
+				<!-- Cola del globo apuntando abajo-derecha -->
+				<svg
+					class="wa-tail"
+					viewBox="0 0 20 12"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path d="M0 0 Q10 0 20 0 L14 12 Q10 8 0 0Z" fill="white"
+					></path>
+				</svg>
+			</div>
+
+			<!-- Botón circular WhatsApp -->
+			<a
+				href="https://wa.me/51999888777?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20y%20precios%20de%20Mi%20Descanso.%20%C2%BFPodr%C3%ADan%20ayudarme%3F"
+				target="_blank"
+				rel="noopener"
+				class="wa-btn"
+				aria-label="Contactar por WhatsApp"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+				>
+					<path
+						d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+					></path>
+					<path
+						d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.875 9.875 0 01-5.032-1.378l-.36-.214-3.735.889.936-3.63-.235-.374A9.861 9.861 0 012.118 12C2.118 6.529 6.529 2.118 12 2.118c5.471 0 9.882 4.411 9.882 9.882 0 5.471-4.411 9.882-9.882 9.882z"
+					></path>
+				</svg>
+			</a>
+		</div>
+
+		<style>
+			/* ── Contenedor ── */
+			.wa-widget {
+				position: fixed;
+				bottom: 28px;
+				right: 28px;
+				z-index: 9000;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				gap: 12px;
+				animation: waBounceIn 0.7s 1s cubic-bezier(0.34, 1.56, 0.64, 1)
+					both;
+			}
+
+			/* ── Burbuja chat ── */
+			.wa-balloon {
+				position: relative;
+				background: white;
+				border-radius: 16px 16px 4px 16px;
+				padding: 14px 36px 14px 18px;
+				box-shadow:
+					0 4px 6px rgba(0, 0, 0, 0.04),
+					0 10px 30px rgba(0, 0, 0, 0.12);
+				max-width: 220px;
+				opacity: 0;
+				transform: translateY(12px) scale(0.92);
+				transition:
+					opacity 0.35s ease,
+					transform 0.35s ease;
+				pointer-events: none;
+			}
+			.wa-balloon.visible {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+				pointer-events: auto;
+				animation: balloonBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)
+					both;
+			}
+			/* Cola apuntando abajo-derecha */
+			.wa-tail {
+				position: absolute;
+				bottom: -10px;
+				right: 18px;
+				width: 20px;
+				height: 12px;
+				filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
+			}
+
+			/* Línea verde arriba */
+			.wa-balloon::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: #25d366;
+				border-radius: 16px 16px 0 0;
+			}
+
+			.wa-balloon-text {
+				font-family: "Outfit", sans-serif;
+				font-size: 0.82rem;
+				color: #1a2e1f;
+				line-height: 1.55;
+				margin: 0;
+			}
+			.wa-balloon-text strong {
+				color: #132418;
+			}
+
+			/* Líneas de texto con entrada escalonada */
+			.wa-line-1,
+			.wa-line-2 {
+				display: inline-block;
+				opacity: 0;
+				transform: translateY(6px);
+			}
+			.wa-balloon.visible .wa-line-1 {
+				animation: textFadeUp 0.4s 0.2s ease both;
+			}
+			.wa-balloon.visible .wa-line-2 {
+				animation: textFadeUp 0.4s 0.42s ease both;
+			}
+
+			/* Emoji que hace wave */
+			.wa-wave {
+				display: inline-block;
+				transform-origin: 70% 80%;
+			}
+			.wa-balloon.visible .wa-wave {
+				animation: waveEmoji 0.6s 0.7s ease both;
+			}
+
+			/* Barra verde superior pulsante */
+			.wa-balloon.visible::before {
+				animation: barPulse 1.5s 0.5s ease 2;
+			}
+
+			/* Botón X para cerrar */
+			.wa-balloon-close {
+				position: absolute;
+				top: 8px;
+				right: 10px;
+				background: none;
+				border: none;
+				color: rgba(0, 0, 0, 0.3);
+				font-size: 0.65rem;
+				cursor: pointer;
+				padding: 2px 4px;
+				line-height: 1;
+				transition: color 0.2s;
+			}
+			.wa-balloon-close:hover {
+				color: rgba(0, 0, 0, 0.6);
+			}
+
+			/* ── Botón WhatsApp ── */
+			.wa-btn {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				background: #25d366;
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-decoration: none;
+				box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+				transition:
+					transform 0.25s ease,
+					box-shadow 0.25s ease;
+				animation: waPulse 3s 2s ease infinite;
+				flex-shrink: 0;
+			}
+			.wa-btn svg {
+				width: 30px;
+				height: 30px;
+			}
+			.wa-btn:hover {
+				transform: scale(1.1) translateY(-3px);
+				box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55);
+				animation: none;
+			}
+
+			/* ── Animaciones ── */
+			@keyframes waBounceIn {
+				from {
+					opacity: 0;
+					transform: translateY(50px) scale(0.75);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0) scale(1);
+				}
+			}
+			@keyframes balloonBounce {
+				0% {
+					transform: translateY(16px) scale(0.88);
+					opacity: 0;
+				}
+				60% {
+					transform: translateY(-6px) scale(1.03);
+					opacity: 1;
+				}
+				80% {
+					transform: translateY(3px) scale(0.98);
+				}
+				100% {
+					transform: translateY(0) scale(1);
+				}
+			}
+			@keyframes textFadeUp {
+				from {
+					opacity: 0;
+					transform: translateY(8px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			@keyframes waveEmoji {
+				0% {
+					transform: rotate(0deg);
+				}
+				20% {
+					transform: rotate(-15deg);
+				}
+				50% {
+					transform: rotate(20deg);
+				}
+				75% {
+					transform: rotate(-8deg);
+				}
+				100% {
+					transform: rotate(0deg);
+				}
+			}
+			@keyframes barPulse {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0.5;
+				}
+			}
+			@keyframes waPulse {
+				0%,
+				100% {
+					box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+				}
+				50% {
+					box-shadow:
+						0 6px 28px rgba(37, 211, 102, 0.65),
+						0 0 0 8px rgba(37, 211, 102, 0.09);
+				}
+			}
+
+			/* ── Mobile ── */
+			@media (max-width: 480px) {
+				.wa-widget {
+					bottom: 18px;
+					right: 18px;
+				}
+				.wa-btn {
+					width: 54px;
+					height: 54px;
+				}
+				.wa-btn svg {
+					width: 26px;
+					height: 26px;
+				}
+				.wa-balloon {
+					max-width: 180px;
+				}
+			}
+		</style>
+
+		<script is:inline>
+			const balloon = document.getElementById("waBalloon");
+			const closeBtn = document.getElementById("waBalloonClose");
+			let dismissed = false;
+
+			function checkScroll() {
+				if (dismissed) return;
+				const scrolled = window.scrollY + window.innerHeight;
+				const total = document.documentElement.scrollHeight;
+				if (scrolled / total >= 0.75) {
+					balloon?.classList.add("visible");
+				} else {
+					balloon?.classList.remove("visible");
+				}
+			}
+
+			window.addEventListener("scroll", checkScroll, { passive: true });
+
+			closeBtn?.addEventListener("click", (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				dismissed = true;
+				balloon?.classList.remove("visible");
+			});
+		</script>
+
+		<!-- Initialize Lucide Icons -->
+		<script is:inline>
+			lucide.createIcons();
+		</script>
+	</body>
+</html>

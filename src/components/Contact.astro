@@ -1,0 +1,192 @@
+---
+
+---
+
+<section
+    class="py-[80px] md:py-[130px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--color-cream)_0%,_#F2EBE1_100%)] relative overflow-hidden"
+    id="contacto"
+>
+    <!-- Blob decorativo -->
+    <div
+        class="absolute bottom-[-10%] right-[-5%] w-[30vw] h-[30vw] bg-sand/50 blur-[120px] rounded-full pointer-events-none"
+    >
+    </div>
+
+    <div
+        class="max-w-[1300px] mx-auto px-[5vw] grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-[60px] lg:gap-[80px] items-start"
+    >
+        <!-- ── COLUMNA INFO ── -->
+        <div class="visit-info">
+            <div class="subtitle-section">Visítanos</div>
+            <h2 class="title-section">
+                Planifique<br />Su Visita
+            </h2>
+            <p class="visit-desc">
+                Club Campestre Mi Descanso es tu refugio ideal en el distrito de
+                Ate. Disfruta de nuestras amplias instalaciones recreativas,
+                piscinas, gastronomía criolla y áreas verdes. El lugar perfecto
+                para vivir momentos inolvidables en familia o celebrar eventos
+                especiales.
+            </p>
+
+            <!-- Items de contacto -->
+            <div class="visit-items">
+                <div class="visit-item group">
+                    <div
+                        class="visit-icon group-hover:bg-copper group-hover:text-white"
+                    >
+                        <i data-lucide="map-pin" style="width:16px;height:16px"
+                        ></i>
+                    </div>
+                    <div>
+                        <span class="visit-label">Dirección</span>
+                        <p class="visit-value">
+                            Asociación El Descanso, Ate 15479 · Lima, Perú
+                        </p>
+                    </div>
+                </div>
+
+                <div class="visit-item group">
+                    <div
+                        class="visit-icon group-hover:bg-copper group-hover:text-white"
+                    >
+                        <i data-lucide="clock" style="width:16px;height:16px"
+                        ></i>
+                    </div>
+                    <div>
+                        <span class="visit-label">Horario de atención</span>
+                        <p class="visit-value">
+                            Martes a Domingo · 9:00 AM – 6:00 PM
+                        </p>
+                    </div>
+                </div>
+
+                <div class="visit-item group">
+                    <div
+                        class="visit-icon group-hover:bg-copper group-hover:text-white"
+                    >
+                        <i data-lucide="phone" style="width:16px;height:16px"
+                        ></i>
+                    </div>
+                    <div>
+                        <span class="visit-label">Teléfono / WhatsApp</span>
+                        <p class="visit-value">+51 999 888 777</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <a
+                href="https://wa.me/51999888777"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-primary self-start inline-flex gap-[10px] mt-[8px]"
+            >
+                <i data-lucide="message-circle" style="width:18px;height:18px"
+                ></i>
+                Escribir por WhatsApp
+            </a>
+        </div>
+
+        <!-- ── COLUMNA MAPA ── -->
+        <div class="visit-map">
+            <iframe
+                title="Mapa Club campestre Mi Descanso"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.548390884552!2d-76.8316084!3d-12.005719500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c3a15f06a5f1%3A0xd1ff9df57d3e537e!2sClub%20campestre%20MI%20DESCANSO!5e0!3m2!1ses-419!2spe!4v1772337431831!5m2!1ses-419!2spe"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+<style>
+    @reference "../styles/global.css";
+
+    .visit-desc {
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        color: rgba(19, 36, 24, 0.65);
+        line-height: 1.8;
+        margin-bottom: 36px;
+        max-width: 460px;
+    }
+
+    /* ── Items de contacto ── */
+    .visit-items {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid rgba(19, 36, 24, 0.08);
+        margin-bottom: 36px;
+    }
+
+    .visit-item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(19, 36, 24, 0.08);
+        transition: padding-left 0.2s ease;
+    }
+    .visit-item:hover {
+        padding-left: 4px;
+    }
+
+    .visit-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(208, 123, 67, 0.1);
+        color: var(--color-copper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+            background 0.25s ease,
+            color 0.25s ease;
+    }
+
+    .visit-label {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: rgba(19, 36, 24, 0.42);
+        margin-bottom: 3px;
+    }
+
+    .visit-value {
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--color-forest-dark);
+        line-height: 1.45;
+    }
+
+    /* ── Mapa ── */
+    .visit-map {
+        width: 100%;
+        height: clamp(420px, 55vw, 650px);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(19, 36, 24, 0.12);
+        align-self: stretch;
+    }
+    .visit-map iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+        .visit-map {
+            height: clamp(320px, 60vw, 480px);
+        }
+    }
+</style>

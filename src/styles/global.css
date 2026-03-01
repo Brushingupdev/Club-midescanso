@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+    --color-cream: #FAF7F2;
+    --color-sand: #EAE3D5;
+    --color-sage: #8A9A86;
+    --color-forest: #213A28;
+    --color-forest-dark: #132418;
+    --color-copper: #D07B43;
+    --color-copper-dark: #A35A4B;
+    --color-gold: #D4AF37;
+    --color-charcoal: #1C1C1C;
+    --color-white: #FFFFFF;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Outfit', sans-serif;
+
+    /* Custom shadows that use rgba - defined here to avoid comma issues */
+    --shadow-hover: 0 20px 50px rgba(19, 36, 24, 0.12);
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.04);
+    --shadow-deep: 0 40px 100px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 30px 60px rgba(0, 0, 0, 0.4);
+    --shadow-date: 0 10px 20px rgba(0, 0, 0, 0.3);
+    --shadow-modal: 0 40px 100px rgba(0, 0, 0, 0.5);
+    --shadow-shows: 0 50px 100px rgba(0, 0, 0, 0.5);
+    --shadow-inset-img: inset 0 0 100px rgba(0, 0, 0, 0.1);
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+    }
+
+    body {
+        font-family: var(--font-body);
+        background-color: var(--color-cream);
+        color: var(--color-charcoal);
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+        background-color: var(--color-forest);
+        color: var(--color-cream);
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9999;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' op='%23000' opacity='0.03'/%3E%3C/svg%3E");
+        opacity: 0.8;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-heading);
+        font-weight: 400;
+    }
+}
+
+/* Button Base Styles */
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center px-10 py-[18px] text-[0.85rem] font-medium uppercase tracking-[0.15em] rounded-full cursor-pointer transition-all duration-300 relative overflow-hidden z-[1];
+    }
+
+    .btn::after {
+        @apply content-[''] absolute inset-0 w-full h-full bg-white/15 translate-y-full transition-transform duration-300 z-[-1] rounded-full;
+    }
+
+    .btn:hover::after {
+        @apply translate-y-0;
+    }
+
+    .btn-primary {
+        @apply bg-forest text-cream border border-forest;
+    }
+
+    .btn-primary:hover {
+        box-shadow: var(--shadow-hover);
+        @apply -translate-y-1;
+    }
+
+    .btn-secondary {
+        @apply bg-copper text-white border border-copper;
+    }
+
+    .btn-secondary:hover {
+        box-shadow: var(--shadow-hover);
+        @apply -translate-y-1;
+    }
+
+    .btn-outline {
+        @apply bg-transparent text-forest-dark border border-forest-dark/30;
+    }
+
+    .btn-outline:hover {
+        @apply border-forest-dark bg-forest-dark text-cream;
+    }
+}
+
+.subtitle-section {
+    @apply font-body text-[0.85rem] text-copper uppercase tracking-[0.25em] mb-6 font-medium flex items-center gap-[15px];
+}
+
+.subtitle-section::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 1px;
+    background-color: var(--color-copper);
+    transform-origin: left;
+    animation: scaleInX 1s ease-out forwards;
+}
+
+@keyframes scaleInX {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.title-section {
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    @apply text-forest-dark leading-[1.1] mb-6 tracking-[-0.01em];
+}

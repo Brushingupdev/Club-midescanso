@@ -1,0 +1,775 @@
+---
+const photos = [
+    {
+        src: "/img/restaurante-1.jpg",
+        label: "Gastronomía Criolla",
+        tag: "Restaurante",
+    },
+    {
+        src: "/img/piscina-personas.png",
+        label: "Club Acuático",
+        tag: "Piscinas",
+    },
+    { src: "/img/eventos-noche.png", label: "Noches de Shows", tag: "Eventos" },
+    {
+        src: "/img/restaurante.jpg",
+        label: "Sabor en Cada Plato",
+        tag: "Restaurante",
+    },
+    { src: "/img/piscina-bebidas.png", label: "Relax Total", tag: "Club" },
+    {
+        src: "/img/juegos-acuaticos.png",
+        label: "Juegos y Toboganes",
+        tag: "Aventura",
+    },
+    { src: "/img/piscina.png", label: "Piscinas Familiares", tag: "Piscinas" },
+];
+---
+
+<section class="gallery-section" id="galeria">
+    <div class="gallery-inner">
+        <div class="gallery-header">
+            <div class="gallery-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">Nuestra Galería</span>
+                <span class="eyebrow-line"></span>
+            </div>
+            <h2 class="gallery-title">Momentos que <em>enamoran</em></h2>
+            <p class="gallery-desc">
+                Toca cualquier imagen para verla en detalle.
+            </p>
+        </div>
+
+        <div class="gal-carousel-wrap">
+            <button
+                class="gal-nav gal-nav--prev"
+                id="galPrev"
+                aria-label="Anterior"
+            >
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><polyline points="15,18 9,12 15,6"></polyline></svg
+                >
+            </button>
+            <button
+                class="gal-nav gal-nav--next"
+                id="galNext"
+                aria-label="Siguiente"
+            >
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><polyline points="9,18 15,12 9,6"></polyline></svg
+                >
+            </button>
+            <div class="gal-track" id="galTrack">
+                {
+                    photos.map((photo, i) => (
+                        <button
+                            class="gal-slide"
+                            data-index={i}
+                            aria-label={`Ver: ${photo.label}`}
+                        >
+                            <img
+                                src={photo.src}
+                                alt={photo.label}
+                                loading="lazy"
+                            />
+                            <div class="gal-slide-info">
+                                <span class="gal-slide-tag">{photo.tag}</span>
+                                <span class="gal-slide-label">
+                                    {photo.label}
+                                </span>
+                            </div>
+                        </button>
+                    ))
+                }
+            </div>
+            <div class="gal-dots" id="galDots">
+                {
+                    photos.map((_, i) => (
+                        <button
+                            class="gal-dot"
+                            data-dot={i}
+                            aria-label={`Foto ${i + 1}`}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div
+    id="lightbox"
+    class="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Galería"
+>
+    <div class="lightbox-backdrop" id="lbBackdrop"></div>
+
+    <!-- Barras de progreso (Stories - solo móvil) -->
+    <div class="lb-bars" id="lbBars">
+        {
+            photos.map((_, i) => (
+                <div class="lb-bar" data-bar={i}>
+                    <div class="lb-bar-fill" />
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Imagen -->
+    <img id="lbImg" src="" alt="" class="lightbox-img" />
+
+    <!-- Flechas (desktop) -->
+    <button id="lbPrev" class="lb-arrow lb-arrow--prev" aria-label="Anterior">
+        <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            ><polyline points="15,18 9,12 15,6"></polyline></svg
+        >
+    </button>
+    <button id="lbNext" class="lb-arrow lb-arrow--next" aria-label="Siguiente">
+        <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            ><polyline points="9,18 15,12 9,6"></polyline></svg
+        >
+    </button>
+
+    <!-- Zonas táctiles (móvil Stories) -->
+    <div class="lb-zone lb-zone--prev" id="lbZonePrev"></div>
+    <div class="lb-zone lb-zone--next" id="lbZoneNext"></div>
+
+    <!-- Cerrar -->
+    <button id="lbClose" class="lb-close" aria-label="Cerrar">
+        <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            ><line x1="18" y1="6" x2="6" y2="18"></line><line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"></line></svg
+        >
+    </button>
+</div>
+
+<style>
+    @reference "../styles/global.css";
+
+    /* ── SECTION ── */
+    .gallery-section {
+        padding: clamp(60px, 10vw, 130px) 0;
+        background: var(--color-cream);
+        overflow: hidden;
+    }
+    .gallery-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 5vw;
+    }
+
+    /* ── HEADER ── */
+    .gallery-header {
+        text-align: center;
+        margin-bottom: clamp(40px, 6vw, 72px);
+        animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .gallery-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    .eyebrow-line {
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: var(--color-copper);
+        opacity: 0.6;
+    }
+    .eyebrow-text {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--color-copper);
+    }
+    .gallery-title {
+        font-family: var(--font-heading);
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        color: var(--color-forest-dark);
+        line-height: 1.1;
+        margin-bottom: 12px;
+    }
+    .gallery-title em {
+        font-style: italic;
+        color: var(--color-copper);
+    }
+    .gallery-desc {
+        font-size: 0.95rem;
+        color: #888;
+        line-height: 1.7;
+    }
+
+    /* ── CARRUSEL ── */
+    .gal-carousel-wrap {
+        position: relative;
+    }
+    .gal-track {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+        cursor: grab;
+    }
+    .gal-track::-webkit-scrollbar {
+        display: none;
+    }
+    .gal-track:active {
+        cursor: grabbing;
+    }
+
+    .gal-slide {
+        flex: 0 0 clamp(240px, 36vw, 480px);
+        scroll-snap-align: start;
+        aspect-ratio: 4/3;
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    .gal-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        display: block;
+        pointer-events: none;
+    }
+    .gal-slide:hover img {
+        transform: scale(1.05);
+    }
+
+    .gal-slide-info {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(10, 20, 14, 0.82) 0%,
+            transparent 55%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 18px 20px;
+        gap: 4px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .gal-slide:hover .gal-slide-info {
+        opacity: 1;
+    }
+    @media (max-width: 600px) {
+        .gal-slide-info {
+            opacity: 1;
+        }
+    }
+
+    .gal-slide-tag {
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--color-gold);
+    }
+    .gal-slide-label {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        color: white;
+    }
+
+    .gal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-60%);
+        z-index: 10;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        color: var(--color-forest-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transition: all 0.25s ease;
+    }
+    .gal-nav:hover {
+        background: white;
+        transform: translateY(-60%) scale(1.08);
+    }
+    .gal-nav--prev {
+        left: -18px;
+    }
+    .gal-nav--next {
+        right: -18px;
+    }
+    @media (max-width: 640px) {
+        .gal-nav--prev {
+            left: 6px;
+        }
+        .gal-nav--next {
+            right: 6px;
+        }
+    }
+
+    .gal-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+    }
+    .gal-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(19, 36, 24, 0.15);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .gal-dot.active {
+        background: var(--color-copper);
+        width: 22px;
+        border-radius: 3px;
+    }
+
+    /* ─────────────────────────────────────────
+       LIGHTBOX — BASE (compartido)
+    ───────────────────────────────────────── */
+    .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 4000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+    .lightbox.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .lightbox-img {
+        position: relative;
+        z-index: 1;
+        max-width: min(90vw, 1200px);
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 6px;
+        transition: opacity 0.18s ease;
+        user-select: none;
+    }
+    .lightbox-img.fading {
+        opacity: 0;
+    }
+
+    /* Cerrar (siempre visible) */
+    .lb-close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.22s ease;
+        backdrop-filter: blur(6px);
+    }
+    .lb-close:hover {
+        background: rgba(208, 123, 67, 0.7);
+        border-color: var(--color-copper);
+        transform: rotate(90deg);
+    }
+
+    /* ─────────────────────────────────────────
+       DESKTOP — flechas visibles, zonas ocultas, barras ocultas
+    ───────────────────────────────────────── */
+    .lb-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.22s ease;
+        backdrop-filter: blur(6px);
+    }
+    .lb-arrow:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-50%) scale(1.1);
+    }
+    .lb-arrow--prev {
+        left: clamp(12px, 4vw, 60px);
+    }
+    .lb-arrow--next {
+        right: clamp(12px, 4vw, 60px);
+    }
+
+    /* Zonas táctiles: ocultas en desktop */
+    .lb-zone {
+        display: none;
+    }
+
+    /* Barras de progreso: ocultas en desktop */
+    .lb-bars {
+        display: none;
+    }
+
+    /* ─────────────────────────────────────────
+       MÓVIL — Stories mode
+    ───────────────────────────────────────── */
+    @media (max-width: 768px) {
+        /* Imagen ocupa toda la pantalla */
+        .lightbox-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            border-radius: 0;
+            object-fit: contain;
+            background: #000;
+        }
+
+        /* Flechas ocultas en móvil */
+        .lb-arrow {
+            display: none;
+        }
+
+        /* Barras de progreso visibles */
+        .lb-bars {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            gap: 4px;
+            padding: 14px 14px 0;
+        }
+        .lb-bar {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .lb-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: white;
+            border-radius: 2px;
+        }
+        .lb-bar.done .lb-bar-fill {
+            width: 100%;
+        }
+        .lb-bar.active .lb-bar-fill {
+            animation: barFill var(--dur, 6s) linear forwards;
+        }
+        @keyframes barFill {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Zonas de toque visibles */
+        .lb-zone {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 45%;
+            z-index: 6;
+            cursor: pointer;
+        }
+        .lb-zone--prev {
+            left: 0;
+        }
+        .lb-zone--next {
+            right: 0;
+        }
+
+        /* Cerrar más arriba para no chocar con las barras */
+        .lb-close {
+            top: 22px;
+        }
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+    // ─── CARRUSEL ───
+    const track = document.getElementById("galTrack")!;
+    const dots = document.querySelectorAll<HTMLButtonElement>(".gal-dot");
+    const btnPrevCar = document.getElementById("galPrev")!;
+    const btnNextCar = document.getElementById("galNext")!;
+    const slides = document.querySelectorAll<HTMLButtonElement>(".gal-slide");
+    let activeIdx = 0;
+
+    function scrollCarousel(idx: number) {
+        activeIdx = Math.max(0, Math.min(idx, slides.length - 1));
+        slides[activeIdx].scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "start",
+        });
+        dots.forEach((d, i) => d.classList.toggle("active", i === activeIdx));
+    }
+    btnPrevCar.addEventListener("click", () => scrollCarousel(activeIdx - 1));
+    btnNextCar.addEventListener("click", () => scrollCarousel(activeIdx + 1));
+    dots.forEach((d, i) =>
+        d.addEventListener("click", () => scrollCarousel(i)),
+    );
+    scrollCarousel(0);
+
+    let isDragging = false,
+        startX = 0,
+        scrollLeft = 0;
+    track.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX);
+    });
+    track.addEventListener("mouseup", () => (isDragging = false));
+    track.addEventListener("mouseleave", () => (isDragging = false));
+    track.addEventListener(
+        "scroll",
+        () => {
+            const idx = Math.round(
+                track.scrollLeft /
+                    ((slides[0] as HTMLElement)?.offsetWidth + 14),
+            );
+            dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+            activeIdx = idx;
+        },
+        { passive: true },
+    );
+
+    // ─── LIGHTBOX ───
+    const srcs = [
+        "/img/restaurante-1.jpg",
+        "/img/piscina-personas.png",
+        "/img/eventos-noche.png",
+        "/img/restaurante.jpg",
+        "/img/piscina-bebidas.png",
+        "/img/juegos-acuaticos.png",
+        "/img/piscina.png",
+    ];
+    const STORY_DURATION = 6000;
+
+    const lb = document.getElementById("lightbox")!;
+    const lbImg = document.getElementById("lbImg") as HTMLImageElement;
+    const lbClose = document.getElementById("lbClose")!;
+    const lbPrev = document.getElementById("lbPrev")!;
+    const lbNext = document.getElementById("lbNext")!;
+    const lbBg = document.getElementById("lbBackdrop")!;
+    const lbZonePrev = document.getElementById("lbZonePrev")!;
+    const lbZoneNext = document.getElementById("lbZoneNext")!;
+    const bars = document.querySelectorAll<HTMLElement>(".lb-bar");
+    let cur = 0;
+    let storyTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const isMobile = () => window.innerWidth <= 768;
+
+    function openLB(idx: number) {
+        cur = idx;
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+        showImg();
+    }
+    function closeLB() {
+        lb.classList.remove("open");
+        document.body.style.overflow = "";
+        stopBar();
+    }
+    function showImg() {
+        lbImg.classList.add("fading");
+        setTimeout(() => {
+            lbImg.src = srcs[cur];
+            lbImg.classList.remove("fading");
+            if (isMobile()) startBar(cur);
+        }, 160);
+    }
+    function nextImg() {
+        cur = (cur + 1) % srcs.length;
+        showImg();
+    }
+    function prevImg() {
+        cur = (cur - 1 + srcs.length) % srcs.length;
+        showImg();
+    }
+
+    // Barras de progreso (solo Stories / móvil)
+    function stopBar() {
+        if (storyTimer) {
+            clearTimeout(storyTimer);
+            storyTimer = null;
+        }
+        bars.forEach((b) => {
+            const fill = b.querySelector<HTMLElement>(".lb-bar-fill")!;
+            fill.style.animation = "none";
+            b.classList.remove("active");
+        });
+    }
+    function startBar(idx: number) {
+        stopBar();
+        bars.forEach((b, i) => {
+            b.classList.remove("active", "done");
+            const fill = b.querySelector<HTMLElement>(".lb-bar-fill")!;
+            fill.style.width = i < idx ? "100%" : "0%";
+            if (i < idx) b.classList.add("done");
+        });
+        const bar = bars[idx];
+        if (!bar) return;
+        bar.style.setProperty("--dur", `${STORY_DURATION}ms`);
+        void (bar as HTMLElement).offsetWidth; // reflow
+        bar.classList.add("active");
+        storyTimer = setTimeout(nextImg, STORY_DURATION);
+    }
+
+    // Abrir desde carrusel
+    slides.forEach((btn) =>
+        btn.addEventListener("click", () =>
+            openLB(parseInt(btn.dataset.index ?? "0")),
+        ),
+    );
+
+    lbClose.addEventListener("click", closeLB);
+    lbBg.addEventListener("click", (e) => {
+        if (e.target === lbBg) closeLB();
+    });
+
+    // Desktop: flechas
+    lbPrev.addEventListener("click", (e) => {
+        e.stopPropagation();
+        prevImg();
+    });
+    lbNext.addEventListener("click", (e) => {
+        e.stopPropagation();
+        nextImg();
+    });
+
+    // Móvil: zonas táctiles
+    lbZonePrev.addEventListener("click", (e) => {
+        e.stopPropagation();
+        prevImg();
+    });
+    lbZoneNext.addEventListener("click", (e) => {
+        e.stopPropagation();
+        nextImg();
+    });
+
+    // Teclado
+    document.addEventListener("keydown", (e) => {
+        if (!lb.classList.contains("open")) return;
+        if (e.key === "ArrowRight") nextImg();
+        if (e.key === "ArrowLeft") prevImg();
+        if (e.key === "Escape") closeLB();
+    });
+
+    // Swipe táctil
+    let tx = 0;
+    lb.addEventListener(
+        "touchstart",
+        (e) => {
+            tx = e.touches[0].clientX;
+        },
+        { passive: true },
+    );
+    lb.addEventListener(
+        "touchend",
+        (e) => {
+            const d = e.changedTouches[0].clientX - tx;
+            if (Math.abs(d) > 40) d < 0 ? nextImg() : prevImg();
+        },
+        { passive: true },
+    );
+</script>

@@ -1,0 +1,220 @@
+---
+
+---
+
+<nav
+    class="fixed top-0 left-0 w-full z-[1010] py-[30px] transition-all duration-300"
+    id="navbar"
+>
+    <div
+        class="max-w-[1600px] mx-auto px-[5vw] flex items-center justify-between transition-all duration-300"
+    >
+        <a
+            href="#hero"
+            class="nav-logo flex items-center transition-all duration-300"
+        >
+            <img
+                src="/img/logo.png"
+                alt="Mi Descanso Logo"
+                class="h-[160px] w-auto transition-all duration-300"
+                id="nav-logo-img"
+            />
+        </a>
+        <ul class="hidden md:flex gap-10" id="navLinks">
+            <li>
+                <a href="#restaurante" class="nav-link-item">Restaurante</a>
+            </li>
+            <li>
+                <a href="#piscinas" class="nav-link-item">Club de Piscinas</a>
+            </li>
+            <li><a href="#hospedaje" class="nav-link-item">Bungalows</a></li>
+            <li><a href="#shows" class="nav-link-item">Experiencias</a></li>
+        </ul>
+        <div class="flex items-center gap-[30px]">
+            <a
+                href="https://wa.me/51999888777?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20y%20precios%20de%20Mi%20Descanso.%20%C2%BFPodr%C3%ADan%20ayudarme%3F"
+                target="_blank"
+                rel="noopener"
+                class="btn hidden md:inline-flex px-7 py-3 text-xs bg-transparent border border-white/30 text-white nav-cta transition-colors"
+                >Reservar</a
+            >
+            <button
+                class="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer relative z-[1010] p-2.5 hamburger"
+                id="hamburger"
+                aria-label="Alternar menú móvil"
+                aria-expanded="false"
+                aria-controls="navLinksMobile"
+            >
+                <span
+                    class="w-[28px] h-[1.5px] bg-white transition-all duration-300"
+                ></span>
+                <span
+                    class="w-[28px] h-[1.5px] bg-white transition-all duration-300"
+                ></span>
+                <span
+                    class="w-[28px] h-[1.5px] bg-white transition-all duration-300"
+                ></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav
+    class="fixed inset-0 bg-forest/95 backdrop-blur-md z-[1000] flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-500 nav-links-mobile"
+    id="navLinksMobile"
+    aria-label="Menú Navegación Móvil"
+>
+    <a
+        href="#restaurante"
+        class="text-white text-2xl font-body uppercase tracking-[0.2em]"
+        >Restaurante</a
+    >
+    <a
+        href="#piscinas"
+        class="text-white text-2xl font-body uppercase tracking-[0.2em]"
+        >Piscinas</a
+    >
+    <a
+        href="#hospedaje"
+        class="text-white text-2xl font-body uppercase tracking-[0.2em]"
+        >Bungalows</a
+    >
+    <a
+        href="#shows"
+        class="text-white text-2xl font-body uppercase tracking-[0.2em]"
+        >Experiencias</a
+    >
+    <a
+        href="https://wa.me/51999888777?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20servicios%20y%20precios%20de%20Mi%20Descanso.%20%C2%BFPodr%C3%ADan%20ayudarme%3F"
+        target="_blank"
+        rel="noopener"
+        class="text-copper text-2xl font-body uppercase tracking-[0.2em]"
+        >Reservar</a
+    >
+</nav>
+
+<style>
+    @reference "../styles/global.css";
+
+    .nav-link-item {
+        @apply text-[0.8rem] font-medium uppercase tracking-[0.15em] text-white/70 relative py-1.5 overflow-hidden transition-colors;
+    }
+    .nav-link-item::after {
+        content: "";
+        @apply absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)];
+    }
+    .nav-link-item:hover::after,
+    .nav-link-item.active::after {
+        @apply scale-x-100 origin-left;
+    }
+    .nav-link-item.active {
+        @apply text-white;
+    }
+
+    /* Scrolled when menu is closed */
+    :global(.scrolled:not(.menu-open)) {
+        @apply py-[15px] bg-[#FAF7F2b3] backdrop-blur-[20px] border-b border-forest-dark/5;
+    }
+    /* When menu is open: transparent so the green overlay shows cleanly */
+    :global(.scrolled.menu-open) {
+        @apply bg-transparent backdrop-blur-none border-b-0;
+    }
+    :global(.scrolled:not(.menu-open) #nav-logo-img) {
+        @apply h-[110px];
+    }
+    :global(.scrolled:not(.menu-open) .nav-link-item) {
+        @apply text-forest-dark/60;
+    }
+    :global(.scrolled:not(.menu-open) .nav-link-item.active),
+    :global(.scrolled:not(.menu-open) .nav-link-item:hover) {
+        @apply text-forest-dark;
+    }
+    :global(.scrolled:not(.menu-open) .nav-cta) {
+        @apply border-forest text-forest hover:bg-forest hover:text-white;
+    }
+    :global(.scrolled:not(.menu-open) .hamburger span) {
+        @apply bg-forest-dark;
+    }
+
+    /* La X siempre visible con fondo verde del menú */
+    :global(.hamburger.active span) {
+        background-color: white !important;
+    }
+
+    /* Hamburger Animation applied via JS */
+    :global(.hamburger.active span:nth-child(1)) {
+        @apply translate-y-[6.5px] rotate-45;
+    }
+    :global(.hamburger.active span:nth-child(2)) {
+        @apply opacity-0;
+    }
+    :global(.hamburger.active span:nth-child(3)) {
+        @apply -translate-y-[6.5px] -rotate-45;
+    }
+
+    /* Mobile Menu Open */
+    :global(.nav-links-mobile.open) {
+        @apply opacity-100 pointer-events-auto;
+    }
+</style>
+
+<script>
+    const navbar = document.getElementById("navbar");
+    const hamburger = document.getElementById("hamburger");
+    const navLinksMobile = document.getElementById("navLinksMobile");
+    const navLinkElements = document.querySelectorAll(
+        ".nav-link-item, #navLinksMobile a",
+    );
+    const sections = document.querySelectorAll(
+        "article[id], header[id], section[id]",
+    );
+
+    // Scroll Effect
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 80) {
+            navbar?.classList.add("scrolled");
+        } else {
+            navbar?.classList.remove("scrolled");
+        }
+    });
+
+    // Mobile Menu
+    hamburger?.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinksMobile?.classList.toggle("open");
+        navbar?.classList.toggle("menu-open");
+        const isOpen = navLinksMobile?.classList.contains("open") ?? false;
+        document.body.style.overflow = isOpen ? "hidden" : "";
+        hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    navLinksMobile?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            hamburger?.classList.remove("active");
+            navLinksMobile?.classList.remove("open");
+            navbar?.classList.remove("menu-open");
+            document.body.style.overflow = "";
+            hamburger?.setAttribute("aria-expanded", "false");
+        });
+    });
+
+    // Active Highlight
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+            const sectionTop = (section as HTMLElement).offsetTop - 120;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute("id") || "";
+            }
+        });
+
+        navLinkElements.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+                link.classList.add("active");
+            }
+        });
+    });
+</script>

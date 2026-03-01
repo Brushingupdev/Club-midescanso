@@ -1,0 +1,488 @@
+---
+
+---
+
+<main
+    class="pt-[100px] pb-[120px] bg-[radial-gradient(ellipse_at_top_right,_var(--color-cream)_0%,_#F2EBE1_100%)] overflow-hidden services-section relative"
+>
+    <!-- Abstract subtle background shape to add depth -->
+    <div
+        class="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] bg-sand/40 blur-[100px] rounded-full pointer-events-none"
+    >
+    </div>
+    <div
+        class="max-w-[1400px] mx-auto px-[5vw] flex flex-col gap-[80px] lg:gap-[150px]"
+    >
+        <!-- SECTION HEADER -->
+        <div
+            class="text-center mb-[-20px] opacity-0 animate-fade-up fill-mode-forwards"
+            data-animate
+        >
+            <h2
+                class="font-heading text-[length:clamp(2.2rem,5vw,4rem)] text-forest-dark leading-[1.1]"
+            >
+                Nuestros <em class="italic text-copper font-medium"
+                    >Servicios</em
+                >
+            </h2>
+        </div>
+
+        <!-- GASTRONOMY -->
+        <article class="service-row" id="restaurante">
+            <div
+                class="service-image-wrapper delay-100 opacity-0 animate-fade-up [--animate-delay:100ms] fill-mode-forwards"
+                data-animate
+            >
+                <img
+                    src="/img/restaurante-1.jpg"
+                    alt="Gastronomía Criolla de Alto Nivel"
+                />
+            </div>
+            <div
+                class="service-content delay-200 opacity-0 animate-fade-up [--animate-delay:200ms] fill-mode-forwards"
+                data-animate
+            >
+                <div class="subtitle-section">Gastronomía</div>
+                <h2 class="title-section">
+                    Disfruta la<br /> mejor sazón.
+                </h2>
+                <p class="service-desc">
+                    Comida criolla de verdad: parrillas, pollos a la leña,
+                    ceviches frescos y más. Todo preparado con fuego real y
+                    sabor casero, para que disfrutes con los que más quieres.
+                </p>
+
+                <!-- Features como lista minimalista -->
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Platos Criollos
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Parrillas Familiares
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Coctelería de Autor
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Al Aire Libre
+                    </li>
+                </ul>
+
+                <div class="pricing-box">
+                    <div class="pricing-header">
+                        <span class="pricing-title">Platos más vendidos</span>
+                        <span class="pricing-amount">S/ 45.00</span>
+                    </div>
+                    <ul class="pricing-details">
+                        <li>
+                            <span>Parrillas Personales desde</span><span
+                                >S/ 40.00</span
+                            >
+                        </li>
+                        <li>
+                            <span>Platos Criollos desde</span><span
+                                >S/ 35.00</span
+                            >
+                        </li>
+                        <li>
+                            <span>Bebidas y Cocteles desde</span><span
+                                >S/ 15.00</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-wrap gap-[15px] justify-center">
+                    <a
+                        href="#"
+                        class="btn btn-outline min-w-0 px-[30px] py-[18px]"
+                        aria-label="Descargar menú en PDF">Descargar PDF</a
+                    >
+                    <button
+                        id="btn-open-menu"
+                        class="btn btn-secondary"
+                        aria-haspopup="dialog"
+                        aria-expanded="false">Ver Carta Virtual</button
+                    >
+                </div>
+            </div>
+        </article>
+
+        <!-- POOLS -->
+        <article class="service-row" id="piscinas">
+            <div
+                class="service-image-wrapper delay-100 opacity-0 animate-fade-up [--animate-delay:100ms] fill-mode-forwards"
+                data-animate
+            >
+                <img
+                    src="/img/juegos-acuaticos.png"
+                    alt="Piscinas y Juegos Acuáticos"
+                />
+            </div>
+            <div
+                class="service-content delay-200 opacity-0 animate-fade-up [--animate-delay:200ms] fill-mode-forwards"
+                data-animate
+            >
+                <div class="subtitle-section">Piscinas & Club</div>
+                <h2 class="title-section">Agua, sol<br />y buena vibra.</h2>
+                <p class="service-desc">
+                    Tres piscinas para toda la familia: la de los peques, la de
+                    los adultos y toboganes para los que se animan. Shórtate,
+                    pón lentes y ven a disfrutar.
+                </p>
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Piscinas Familiares
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Toboganes Gigantes
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Zona Infantil Segura
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Zonas de Descanso
+                    </li>
+                </ul>
+
+                <div class="pricing-box">
+                    <div class="pricing-header">
+                        <span class="pricing-title">Entrada General</span>
+                        <span class="pricing-amount">S/ 25.00</span>
+                    </div>
+                    <ul class="pricing-details">
+                        <li>
+                            <span>Entrada Niños (hasta 10 años)</span><span
+                                >S/ 15.00</span
+                            >
+                        </li>
+                        <li>
+                            <span>Alquiler de Sombrillas</span><span
+                                >S/ 10.00</span
+                            >
+                        </li>
+                        <li>
+                            <span>Pase VIP (Piscinas Exclusivas)</span><span
+                                >S/ 40.00</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <a
+                        href="https://wa.me/51999888777?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20entrada%20al%20Club%20de%20Piscinas%20de%20Mi%20Descanso.%20%C2%BFPodr%C3%ADan%20darme%20m%C3%A1s%20informaci%C3%B3n%20sobre%20disponibilidad%20y%20precios%3F%20%F0%9F%8F%8A"
+                        target="_blank"
+                        rel="noopener"
+                        class="btn btn-outline">Solicitar Reserva</a
+                    >
+                </div>
+            </div>
+        </article>
+
+        <!-- HOSPEDAJE -->
+        <article class="service-row" id="hospedaje">
+            <div
+                class="service-image-wrapper delay-100 opacity-0 animate-fade-up [--animate-delay:100ms] fill-mode-forwards"
+                data-animate
+            >
+                <img src="img/piscina.png" alt="Bungalows Exclusivos" />
+            </div>
+            <div
+                class="service-content delay-200 opacity-0 animate-fade-up [--animate-delay:200ms] fill-mode-forwards"
+                data-animate
+            >
+                <div class="subtitle-section">Alojamiento</div>
+                <h2 class="title-section">Quédate a<br />dormir aquí.</h2>
+                <p class="service-desc">
+                    Nuestros bungalows son cómodos, tranquilos y con desayuno
+                    incluido. Para cuando quieres escaparte de Lima y no volver
+                    al día siguiente.
+                </p>
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Bungalows Privados
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Desayuno Incluido
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Wi-Fi Alta Velocidad
+                    </li>
+                    <li class="feature-item">
+                        <span class="f-dot"></span>Paz y Tranquilidad
+                    </li>
+                </ul>
+
+                <div class="pricing-box">
+                    <div class="pricing-header">
+                        <span class="pricing-title">Noche de Estadía</span>
+                        <span class="pricing-amount">S/ 180.00</span>
+                    </div>
+                    <ul class="pricing-details">
+                        <li>
+                            <span>Bungalow Familiar (4 personas)</span><span
+                                >S/ 280.00</span
+                            >
+                        </li>
+                        <li>
+                            <span>Cama adicional</span><span>S/ 50.00</span>
+                        </li>
+                        <li>
+                            <span>Desayuno Premium</span><span>Incluido</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <a
+                        href="https://wa.me/51999888777?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20un%20bungalow%20en%20Mi%20Descanso.%20%C2%BFPodr%C3%ADan%20informarme%20sobre%20disponibilidad%2C%20precios%20y%20qu%C3%A9%20incluye%20el%20alojamiento%3F%20%F0%9F%8C%BF"
+                        target="_blank"
+                        rel="noopener"
+                        class="btn btn-outline">Solicitar Reserva</a
+                    >
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+
+<style>
+    @reference "../styles/global.css";
+
+    /* Base Grid */
+    .service-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        align-items: center;
+    }
+
+    /* Odd rows: Image Left (col 1-7), Content Right (col 7-13) */
+    .service-row:nth-child(odd) .service-image-wrapper {
+        grid-column: 1 / 7;
+        grid-row: 1;
+    }
+    .service-row:nth-child(odd) .service-content {
+        grid-column: 6 / 13;
+        grid-row: 1;
+        z-index: 2;
+        padding-left: 60px;
+    }
+
+    /* Even rows: Image Right (col 7-13), Content Left (col 1-7) */
+    .service-row:nth-child(even) .service-image-wrapper {
+        grid-column: 7 / 13;
+        grid-row: 1;
+    }
+    .service-row:nth-child(even) .service-content {
+        grid-column: 1 / 8;
+        grid-row: 1;
+        z-index: 2;
+        padding-right: 60px;
+    }
+
+    /* Image Wrapper */
+    .service-image-wrapper {
+        position: relative;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+        clip-path: inset(0% 0% 0% 0% round 400px 400px 0 0);
+        box-shadow: var(--shadow-soft);
+        will-change: transform;
+        border: 1px solid rgba(255, 255, 255, 0.4); /* Subtly frame the image */
+    }
+    .service-image-wrapper::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        box-shadow: var(--shadow-inset-img);
+        border-radius: 400px 400px 0 0;
+        pointer-events: none;
+    }
+    .service-image-wrapper img {
+        @apply w-full h-full object-cover;
+        transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-row:hover .service-image-wrapper img {
+        transform: scale(1.08);
+    }
+
+    /* Content Panel — glassmorphism crema */
+    .service-content {
+        background: rgba(242, 235, 225, 0.88);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: clamp(30px, 4vw, 60px) clamp(24px, 4vw, 56px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 40px rgba(19, 36, 24, 0.08);
+        position: relative;
+    }
+    /* Número decorativo grande de la sección */
+    .service-content::before {
+        content: none;
+    }
+    /* Quitar el pseudo elemento de la esquina */
+    .service-row:hover .service-content::before {
+        content: none;
+    }
+
+    .service-desc {
+        font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+        color: #777;
+        margin-bottom: clamp(24px, 3vw, 40px);
+        line-height: 1.9;
+        max-width: 420px;
+    }
+
+    /* Features: fila minimalista con puntos */
+    .features-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 0;
+        margin-bottom: clamp(24px, 3vw, 36px);
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid rgba(19, 36, 24, 0.08);
+        padding-top: clamp(18px, 2vw, 28px);
+    }
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: var(--color-forest-dark);
+        text-transform: uppercase;
+        width: 50%;
+        padding: 6px 0;
+    }
+    .f-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--color-copper);
+        flex-shrink: 0;
+    }
+
+    /* Pricing Box — estilo recibo artesanal */
+    .pricing-box {
+        margin: 0 0 clamp(24px, 3vw, 36px);
+        padding: clamp(16px, 2vw, 24px) 0;
+        border-top: 1px solid rgba(19, 36, 24, 0.12);
+        border-bottom: 1px solid rgba(19, 36, 24, 0.12);
+        background: transparent;
+    }
+    .pricing-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+        border-bottom: 1px dashed rgba(208, 123, 67, 0.3);
+    }
+    .pricing-title {
+        font-family: var(--font-body);
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--color-forest-dark);
+        opacity: 0.6;
+    }
+    .pricing-amount {
+        font-family: var(--font-heading);
+        font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+        font-weight: normal;
+        color: var(--color-copper);
+    }
+    .pricing-details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .pricing-details li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.95rem;
+        color: #555;
+        position: relative;
+    }
+    .pricing-details li::after {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dotted rgba(19, 36, 24, 0.25);
+        z-index: 0;
+    }
+    .pricing-details li span {
+        background: transparent;
+        padding: 0 5px;
+        z-index: 1;
+    }
+    .pricing-details li span:first-child {
+        padding-left: 0;
+    }
+    .pricing-details li span:last-child {
+        padding-right: 0;
+        font-weight: 500;
+        color: var(--color-forest);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 1024px) {
+        .service-row {
+            display: flex;
+            flex-direction: column;
+        }
+        .service-image-wrapper {
+            width: 100%;
+            aspect-ratio: 16/10;
+            clip-path: inset(0% 0% 0% 0% round 120px 120px 0 0);
+        }
+        .service-image-wrapper::after {
+            border-radius: 120px 120px 0 0;
+        }
+        .service-content {
+            width: calc(100% - 6vw);
+            margin: -30px 3vw 0;
+            padding: 28px 22px;
+        }
+        .service-row:nth-child(odd) .service-content,
+        .service-row:nth-child(even) .service-content {
+            padding-left: 22px;
+            padding-right: 22px;
+        }
+        .features-list {
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 14px;
+        }
+        .pricing-details li {
+            font-size: 0.82rem;
+        }
+    }
+
+    /* Animation Utils */
+    .animate-fade-up {
+        animation-name: fadeUp;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        animation-fill-mode: forwards;
+    }
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .fill-mode-forwards {
+        animation-fill-mode: forwards;
+    }
+</style>
