@@ -16,280 +16,356 @@
     >
     </div>
     <div
-        class="menu-modal-content bg-cream w-[90%] max-w-[800px] h-[85vh] rounded-[20px] relative z-[1] overflow-y-auto p-[60px] translate-y-[40px] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        class="menu-modal-content bg-cream w-[95%] md:w-[90%] max-w-[800px] h-[85vh] rounded-[15px] md:rounded-[20px] relative z-[1] translate-y-[40px] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col overflow-hidden"
     >
         <button
-            class="absolute top-[30px] right-[30px] bg-sand border-none w-[44px] h-[44px] rounded-full flex items-center justify-center text-forest cursor-pointer transition-all duration-300 hover:bg-copper hover:text-white hover:rotate-90"
+            class="absolute top-[15px] right-[15px] md:top-[30px] md:right-[30px] bg-sand border-none w-[36px] h-[36px] md:w-[44px] md:h-[44px] rounded-full flex items-center justify-center text-forest cursor-pointer transition-all duration-300 hover:bg-copper hover:text-white hover:rotate-90 z-[30] shadow-sm"
             id="menuCloseBtn"
             aria-label="Cerrar carta"
         >
-            <i aria-hidden="true" data-lucide="x"></i>
+            <i
+                aria-hidden="true"
+                data-lucide="x"
+                class="w-[20px] h-[20px] md:w-[24px] md:h-[24px]"></i>
         </button>
 
-        <div class="mb-[50px] border-b border-copper/30 pb-[30px]">
-            <div
-                class="subtitle-section justify-center text-copper before:bg-copper"
-            >
-                Nuestra Carta
-            </div>
-            <h2
-                id="modal-title"
-                class="font-heading text-[length:clamp(2.8rem,5vw,4.5rem)] text-forest-dark text-center mb-0 leading-[1.1]"
-            >
-                Sabor & Tradición
-            </h2>
-        </div>
-
-        <div class="menu-body">
-            <!-- Parillas -->
-            <div class="mb-[60px]">
-                <h3
-                    class="font-heading text-[1.8rem] text-forest-dark mb-[30px] flex items-center gap-[15px] after:content-[''] after:flex-1 after:h-[1px] after:bg-forest-dark/10"
-                >
-                    Parrillas Premium
-                </h3>
-                <ul class="flex flex-col gap-[25px]">
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Parrilla Personal Especial
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Corte de res, pollo, chuleta, chorizo,
-                                anticucho, papas nativas y ensalada.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 45.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Parrilla Familiar (Para 4)
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Carnes surtidas, 4 chorizos, 4 anticuchos,
-                                porción familiar de papas y ensalada fresca.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 160.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Costillar de Cerdo a la Leña
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Costillar bañado en salsa BBQ de la casa,
-                                acompañado de papas doradas aromáticas.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 55.00
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Platos Criollos -->
-            <div class="mb-[60px]">
-                <h3
-                    class="font-heading text-[1.8rem] text-forest-dark mb-[30px] flex items-center gap-[15px] after:content-[''] after:flex-1 after:h-[1px] after:bg-forest-dark/10"
-                >
-                    Tradición Criolla
-                </h3>
-                <ul class="flex flex-col gap-[25px]">
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Ceviche de Pescado Fresco
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Pesca del día con limón sutil, ají limo, choclo,
-                                camote glaseado y canchita.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 38.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Lomo Saltado al Wok
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Fino lomo de res ahumado al wok con cebolla,
-                                tomate, papas fritas y arroz blanco.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 42.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Arroz con Pato a la Chiclayana
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Pato tierno cocinado a fuego lento con cerveza
-                                negra, chicha de jora y culantro.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 48.00
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Postres -->
-            <div class="mb-[60px]">
-                <h3
-                    class="font-heading text-[1.8rem] text-forest-dark mb-[30px] flex items-center gap-[15px] after:content-[''] after:flex-1 after:h-[1px] after:bg-forest-dark/10"
-                >
-                    Dulce Final
-                </h3>
-                <ul class="flex flex-col gap-[25px]">
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Picarones Tradicionales
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Aros crujientes de zapallo y camote bañados en
-                                miel de chancaca con higos.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 15.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Suspiro a la Limeña
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Clásico postre de manjarblanco con yemas
-                                cubierto de un delicado merengue al oporto.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 18.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Volcán de Chocolate Campestre
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Bizcocho tibio de cacao peruano con centro
-                                líquido y helado de lúcuma artesanal.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 22.00
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Bebidas -->
-            <div class="mb-[60px]">
-                <h3
-                    class="font-heading text-[1.8rem] text-forest-dark mb-[30px] flex items-center gap-[15px] after:content-[''] after:flex-1 after:h-[1px] after:bg-forest-dark/10"
-                >
-                    Bebidas y Coctelería
-                </h3>
-                <ul class="flex flex-col gap-[25px]">
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Pisco Sour Catedral
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Pisco Quebranta, limón recién exprimido, jarabe
-                                de goma, clara de huevo y amargo de angostura.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 25.00
-                        </div>
-                    </li>
-                    <li class="flex justify-between gap-[40px]">
-                        <div>
-                            <h4
-                                class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
-                            >
-                                Chilcano de Maracuyá
-                            </h4>
-                            <p class="text-[0.9rem] text-[#666] leading-[1.5]">
-                                Pisco Acholado, zumo de maracuyá, ginger ale,
-                                hielo y rodajas de limón.
-                            </p>
-                        </div>
-                        <div
-                            class="font-body font-semibold text-copper text-[1.25rem] whitespace-nowrap"
-                        >
-                            S/ 22.00
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div
-            class="text-center pt-[40px] border-t border-dotted border-forest-dark/20 text-[0.85rem] text-[#888]"
+            class="overflow-y-auto flex-1 p-[25px] md:p-[60px] pt-[50px] md:pt-[60px] scroll-smooth"
         >
-            <p>
-                Todos nuestros precios incluyen IGV. Servicio exclusivo sujetos
-                a disponibilidad.
-            </p>
+            <div
+                class="mb-[30px] md:mb-[50px] border-b border-copper/30 pb-[20px] md:pb-[30px] mt-[15px] md:mt-0 flex flex-col items-center"
+            >
+                <div
+                    class="subtitle-section justify-center text-copper before:bg-copper"
+                >
+                    Nuestra Carta
+                </div>
+                <h2
+                    id="modal-title"
+                    class="font-heading text-[length:clamp(2.2rem,5vw,4.5rem)] text-forest-dark text-center mb-0 leading-[1.1]"
+                >
+                    Sabor & Tradición
+                </h2>
+            </div>
+
+            <div class="menu-body">
+                <!-- Parillas -->
+                <div class="mb-[40px] md:mb-[60px]">
+                    <h3
+                        class="font-heading text-[1.6rem] md:text-[1.8rem] text-forest-dark mb-[20px] md:mb-[30px] flex flex-col sm:flex-row items-center text-center sm:text-left gap-[10px] sm:gap-[15px] after:content-[''] after:w-[40px] sm:after:w-auto sm:after:flex-1 after:h-[2px] sm:after:h-[1px] after:bg-copper sm:after:bg-forest-dark/10"
+                    >
+                        Parrillas Premium
+                    </h3>
+                    <ul class="flex flex-col gap-[25px]">
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Parrilla Personal Especial
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Corte de res, pollo, chuleta, chorizo,
+                                    anticucho, papas nativas y ensalada.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 45.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Parrilla Familiar (Para 4)
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Carnes surtidas, 4 chorizos, 4 anticuchos,
+                                    porción familiar de papas y ensalada fresca.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 160.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Costillar de Cerdo a la Leña
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Costillar bañado en salsa BBQ de la casa,
+                                    acompañado de papas doradas aromáticas.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 55.00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Platos Criollos -->
+                <div class="mb-[40px] md:mb-[60px]">
+                    <h3
+                        class="font-heading text-[1.6rem] md:text-[1.8rem] text-forest-dark mb-[20px] md:mb-[30px] flex flex-col sm:flex-row items-center text-center sm:text-left gap-[10px] sm:gap-[15px] after:content-[''] after:w-[40px] sm:after:w-auto sm:after:flex-1 after:h-[2px] sm:after:h-[1px] after:bg-copper sm:after:bg-forest-dark/10"
+                    >
+                        Tradición Criolla
+                    </h3>
+                    <ul class="flex flex-col gap-[25px]">
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Ceviche de Pescado Fresco
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Pesca del día con limón sutil, ají limo,
+                                    choclo, camote glaseado y canchita.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 38.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Lomo Saltado al Wok
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Fino lomo de res ahumado al wok con cebolla,
+                                    tomate, papas fritas y arroz blanco.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 42.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Arroz con Pato a la Chiclayana
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Pato tierno cocinado a fuego lento con
+                                    cerveza negra, chicha de jora y culantro.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 48.00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Postres -->
+                <div class="mb-[40px] md:mb-[60px]">
+                    <h3
+                        class="font-heading text-[1.6rem] md:text-[1.8rem] text-forest-dark mb-[20px] md:mb-[30px] flex flex-col sm:flex-row items-center text-center sm:text-left gap-[10px] sm:gap-[15px] after:content-[''] after:w-[40px] sm:after:w-auto sm:after:flex-1 after:h-[2px] sm:after:h-[1px] after:bg-copper sm:after:bg-forest-dark/10"
+                    >
+                        Dulce Final
+                    </h3>
+                    <ul class="flex flex-col gap-[25px]">
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Picarones Tradicionales
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Aros crujientes de zapallo y camote bañados
+                                    en miel de chancaca con higos.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 15.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Suspiro a la Limeña
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Clásico postre de manjarblanco con yemas
+                                    cubierto de un delicado merengue al oporto.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 18.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Volcán de Chocolate Campestre
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Bizcocho tibio de cacao peruano con centro
+                                    líquido y helado de lúcuma artesanal.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 22.00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bebidas -->
+                <div class="mb-[40px] md:mb-[60px]">
+                    <h3
+                        class="font-heading text-[1.6rem] md:text-[1.8rem] text-forest-dark mb-[20px] md:mb-[30px] flex flex-col sm:flex-row items-center text-center sm:text-left gap-[10px] sm:gap-[15px] after:content-[''] after:w-[40px] sm:after:w-auto sm:after:flex-1 after:h-[2px] sm:after:h-[1px] after:bg-copper sm:after:bg-forest-dark/10"
+                    >
+                        Bebidas y Coctelería
+                    </h3>
+                    <ul class="flex flex-col gap-[25px]">
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Pisco Sour Catedral
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Pisco Quebranta, limón recién exprimido,
+                                    jarabe de goma, clara de huevo y amargo de
+                                    angostura.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 25.00
+                            </div>
+                        </li>
+                        <li
+                            class="flex flex-col sm:flex-row justify-between items-center sm:items-start text-center sm:text-left gap-[10px] sm:gap-[40px] border-b border-forest-dark/5 sm:border-none pb-[15px] sm:pb-0 last:border-none last:pb-0"
+                        >
+                            <div
+                                class="flex flex-col items-center sm:items-start"
+                            >
+                                <h4
+                                    class="text-[1.15rem] text-forest-dark font-body font-medium mb-[5px]"
+                                >
+                                    Chilcano de Maracuyá
+                                </h4>
+                                <p
+                                    class="text-[0.85rem] md:text-[0.9rem] text-[#666] leading-[1.5]"
+                                >
+                                    Pisco Acholado, zumo de maracuyá, ginger
+                                    ale, hielo y rodajas de limón.
+                                </p>
+                            </div>
+                            <div
+                                class="font-body font-semibold text-copper text-[1.1rem] md:text-[1.25rem] whitespace-nowrap"
+                            >
+                                S/ 22.00
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="text-center pt-[40px] border-t border-dotted border-forest-dark/20 text-[0.85rem] text-[#888]"
+            >
+                <p>
+                    Todos nuestros precios incluyen IGV. Servicio exclusivo
+                    sujetos a disponibilidad.
+                </p>
+            </div>
         </div>
     </div>
 </div>
