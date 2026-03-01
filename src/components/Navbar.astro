@@ -3,7 +3,7 @@
 ---
 
 <nav
-    class="fixed top-0 left-0 w-full z-[1010] py-[30px] transition-all duration-300"
+    class="fixed top-0 left-0 w-full z-[1010] py-[15px] md:py-[30px] transition-all duration-300"
     id="navbar"
 >
     <div
@@ -16,7 +16,7 @@
             <img
                 src="/img/logo.png"
                 alt="Mi Descanso Logo"
-                class="h-[160px] w-auto transition-all duration-300"
+                class="h-[100px] md:h-[160px] w-auto transition-all duration-300"
                 id="nav-logo-img"
             />
         </a>
@@ -114,14 +114,14 @@
 
     /* Scrolled when menu is closed */
     :global(.scrolled:not(.menu-open)) {
-        @apply py-[15px] bg-[#FAF7F2b3] backdrop-blur-[20px] border-b border-forest-dark/5;
+        @apply py-[10px] md:py-[15px] bg-[#FAF7F2b3] backdrop-blur-[20px] border-b border-forest-dark/5;
     }
     /* When menu is open: transparent so the green overlay shows cleanly */
     :global(.scrolled.menu-open) {
         @apply bg-transparent backdrop-blur-none border-b-0;
     }
     :global(.scrolled:not(.menu-open) #nav-logo-img) {
-        @apply h-[110px];
+        @apply h-[80px] md:h-[110px];
     }
     :global(.scrolled:not(.menu-open) .nav-link-item) {
         @apply text-forest-dark/60;
